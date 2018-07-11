@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">myemail</string>
+    <string name="tipsnumber">输入号码</string>
+    <string name="tipsedit">输入电话号码</string>
+    <string name="emailtips">输入短信内容</string>
+    <string name="buttontips">Send</string>
+</resources>
