@@ -13,6 +13,8 @@ import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
+import java.util.ArrayList;
+
 public class MainActivity extends Activity {
     private Button sendmessage;
     private EditText et_number ;
@@ -30,6 +32,7 @@ public class MainActivity extends Activity {
     public void sendmessage(View view) {
         String telnumber = et_number.getText().toString().trim();
         String content = et_Content.getText().toString();
+        String[] allphonenumber = telnumber.split(",");
         if(TextUtils.isEmpty(telnumber))
         {
             Toast.makeText(this,"电话号码不能为空",Toast.LENGTH_SHORT).show();
@@ -42,9 +45,14 @@ public class MainActivity extends Activity {
         {
             Intent intent = new Intent();
             SmsManager smsManager = SmsManager.getDefault();
-            smsManager.sendTextMessage(telnumber,null,content,null,null);
-
+            ArrayList<String> contents = smsManager.divideMessage(content);
+            for(int i = 0 ; i < allphonenumber.length;i++)
+            {
+                for(String str:contents)
+                {
+                    smsManager.sendTextMessage(allphonenumber[i],null,str,null,null);
+                }
+            }
         }
-
     }
 }
